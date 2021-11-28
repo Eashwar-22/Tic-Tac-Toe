@@ -25,5 +25,12 @@ _Note : 1 session can contain multiple games._
 <img width="1195" alt="Screenshot 2021-11-28 at 1 41 15 PM" src="https://user-images.githubusercontent.com/86509452/143734843-5db9b1b9-d559-485c-8c4c-6c7c05b54201.png">
 
 __Description__ <br>
-* player : X or O's turn
-* 
+| Column | Description | Comments
+| - | - | -
+| player | X's or O's turn to play ||
+| win | Flag=1 if the game has been won following the player's move | The flag remains at 0 until the win occurs or if there is a draw|
+| 1_played to 9_played | Represents the cells 1 to 9 in the TicTacToe board | 1 if X has already used that cell,<br> -1 if O has already used that cell <br> _Note : Even the cell at the current player's turn is updated in the same row._
+| 1_threat to 9_threat | Represents the possible cells that could bring the loss to the current player if the opposition uses one of these flagged cells in the following turn. | 1 for cells that could end the game if the opposition uses them in the next move else 0
+| 1_win to 9_win | In contrast wrt the previous 9 columns, these cells represent the potential of winning if the player uses one of the flagged cells in their next tun. | Eg: cell 9 is flagged as 1, if the same player uses cell 9 in the next turn he/she could win the game. But of course this could be disrupted if the opposition comes up with a different play.
+| next_move | Cell number used in the next turn. After every game session the rows are shifted by 1 so it represents the next possible move based on the circumstance |  This is the cell to be predicted by the bot during Human vs Computer session.
+                         
